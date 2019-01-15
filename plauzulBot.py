@@ -1,5 +1,4 @@
 import pyautogui
-import keyboard
 import sys
 import time
 from tkinter import *
@@ -19,11 +18,11 @@ def bt_capture():
     mouseXBottom, mouseYRight = pyautogui.position()
 
 def bt_start():
-    while 1:
-        toTopLeft()
-        toTopRight()
-        toBottomRight()
-        toBottomLeft()
+    #while 1:
+    toTopLeft(10)
+    toTopRight(10)
+    toBottomRight(10)
+    toBottomLeft(10)
 
 def bt_stop():
     sys.exit(0)
@@ -36,57 +35,50 @@ def press(e):
     elif e.char == "3":
         bt_stop()
 
-def toTopLeft():
-    distance = 2000
-    pyautogui.moveTo(mouseXTop, mouseYLeft)
+def toTopLeft(distance):
     time.sleep(1)
+    verify_img_bonus()
     if distance >= 0:
+        pyautogui.moveTo(mouseXTop, mouseYLeft)
         pyautogui.click()
-        #verify_img_bonus()
         distance -= 5
-        toTopLeft()
-    else:
-        toBottomLeft()
+        toTopLeft(distance)
 
-def toBottomLeft():
-    distance = 1500
-    pyautogui.moveTo(mouseXTop, mouseYRight)
+def toBottomLeft(distance):
     time.sleep(1)
+    verify_img_bonus()
     if distance >= 0:
+        pyautogui.moveTo(mouseXTop, mouseYRight)
         pyautogui.click()
-        #verify_img_bonus()
         distance -= 5
-        toBottomLeft()
-    else:
-        toTopRight()
+        toBottomLeft(distance)
 
-def toTopRight():
-    distance = 1000
-    pyautogui.moveTo(mouseXBottom, mouseYLeft)
+def toTopRight(distance):
     time.sleep(1)
+    verify_img_bonus()
     if distance >= 0:
+        pyautogui.moveTo(mouseXBottom, mouseYLeft)
         pyautogui.click()
-        #verify_img_bonus()
         distance -= 5
-        toTopRight()
-    else:
-        toBottomRight()
+        toTopRight(distance)
 
-def toBottomRight():
-    distance = 500
-    pyautogui.moveTo(mouseXBottom, mouseYRight)
+def toBottomRight(distance):
     time.sleep(1)
+    verify_img_bonus()
     if distance >= 0:
+        pyautogui.moveTo(mouseXBottom, mouseYRight)
         pyautogui.click()
-        #verify_img_bonus()
         distance -= 5
-        toBottomRight()
-    else:
-        toTopLeft()
+        toBottomRight(distance)
 
 def verify_img_bonus():
-    x, y = pyautogui.locateOnScreen("imgs/bonus-box.png")
-    pyautogui.click(mouseXBottom, mouseYRight)
+    try:
+        k = pyautogui.locateOnScreen('imgs/bonus-box.png', grayscale=True, confidence=.9)
+        s = pyautogui.center(k)
+        d = list(s)
+        pyautogui.click(d[0], d[1])
+    except:
+        return 0
     time.sleep(5)
     return 0
 
