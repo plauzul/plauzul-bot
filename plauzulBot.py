@@ -18,11 +18,11 @@ def bt_capture():
     mouseXBottom, mouseYRight = pyautogui.position()
 
 def bt_start():
-    #while 1:
-    toTopLeft(10)
-    toTopRight(10)
-    toBottomRight(10)
-    toBottomLeft(10)
+    while 1:
+        toTopLeft(40)
+        toTopRight(40)
+        toBottomRight(40)
+        toBottomLeft(40)
 
 def bt_stop():
     sys.exit(0)
@@ -38,6 +38,8 @@ def press(e):
 def toTopLeft(distance):
     time.sleep(1)
     verify_img_bonus()
+    verify_img_bonus()
+    verify_img_bonus()
     if distance >= 0:
         pyautogui.moveTo(mouseXTop, mouseYLeft)
         pyautogui.click()
@@ -46,6 +48,8 @@ def toTopLeft(distance):
 
 def toBottomLeft(distance):
     time.sleep(1)
+    verify_img_bonus()
+    verify_img_bonus()
     verify_img_bonus()
     if distance >= 0:
         pyautogui.moveTo(mouseXTop, mouseYRight)
@@ -56,6 +60,8 @@ def toBottomLeft(distance):
 def toTopRight(distance):
     time.sleep(1)
     verify_img_bonus()
+    verify_img_bonus()
+    verify_img_bonus()
     if distance >= 0:
         pyautogui.moveTo(mouseXBottom, mouseYLeft)
         pyautogui.click()
@@ -64,6 +70,8 @@ def toTopRight(distance):
 
 def toBottomRight(distance):
     time.sleep(1)
+    verify_img_bonus()
+    verify_img_bonus()
     verify_img_bonus()
     if distance >= 0:
         pyautogui.moveTo(mouseXBottom, mouseYRight)
@@ -79,7 +87,7 @@ def verify_img_bonus():
         pyautogui.click(d[0], d[1])
     except:
         return 0
-    time.sleep(5)
+    time.sleep(3)
     return 0
 
 window = Tk()
