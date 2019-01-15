@@ -17,8 +17,6 @@ def bt_capture():
     messagebox.showinfo("Selecione a área", "posicione o mouse no canto inferior direito")
     global mouseXBottom, mouseYRight
     mouseXBottom, mouseYRight = pyautogui.position()
-    #time.sleep(5)
-    #verify_img_bonus()
 
 def bt_start():
     while 1:
@@ -41,34 +39,54 @@ def press(e):
 def toTopLeft():
     distance = 2000
     pyautogui.moveTo(mouseXTop, mouseYLeft)
-    while distance >= 0:
+    time.sleep(1)
+    if distance >= 0:
         pyautogui.click()
+        #verify_img_bonus()
         distance -= 5
+        toTopLeft()
+    else:
+        toBottomLeft()
 
 def toBottomLeft():
     distance = 1500
     pyautogui.moveTo(mouseXTop, mouseYRight)
-    while distance >= 0:
+    time.sleep(1)
+    if distance >= 0:
         pyautogui.click()
+        #verify_img_bonus()
         distance -= 5
+        toBottomLeft()
+    else:
+        toTopRight()
 
 def toTopRight():
     distance = 1000
     pyautogui.moveTo(mouseXBottom, mouseYLeft)
-    while distance >= 0:
+    time.sleep(1)
+    if distance >= 0:
         pyautogui.click()
+        #verify_img_bonus()
         distance -= 5
+        toTopRight()
+    else:
+        toBottomRight()
 
 def toBottomRight():
     distance = 500
     pyautogui.moveTo(mouseXBottom, mouseYRight)
-    while distance >= 0:
+    time.sleep(1)
+    if distance >= 0:
         pyautogui.click()
+        #verify_img_bonus()
         distance -= 5
+        toBottomRight()
+    else:
+        toTopLeft()
 
 def verify_img_bonus():
-    x, y = pyautogui.locateCenterOnScreen('imgs/bonus.png')
-    pyautogui.click(x, y)
+    x, y = pyautogui.locateOnScreen("imgs/bonus-box.png")
+    pyautogui.click(mouseXBottom, mouseYRight)
     time.sleep(5)
     return 0
 
