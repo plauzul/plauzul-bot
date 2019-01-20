@@ -11,19 +11,19 @@ mouseYRight = 0
 getPirateBau = 0
 
 def bt_capture():
-    messagebox.showinfo("Selecione a área", "posicione o mouse no canto superior esquerdo")
+    messagebox.showinfo("Selecione a área", "posicione o mouse no canto superior esquerdo do mini mapa")
     global mouseXTop, mouseYLeft
     mouseXTop, mouseYLeft = pyautogui.position()
-    messagebox.showinfo("Selecione a área", "posicione o mouse no canto inferior direito")
+    messagebox.showinfo("Selecione a área", "posicione o mouse no canto inferior direito do mini mapa")
     global mouseXBottom, mouseYRight
     mouseXBottom, mouseYRight = pyautogui.position()
 
 def bt_start():
-    #while 1:
-    toTopLeft(50)
-    toTopRight(50)
-    toBottomRight(50)
-    toBottomLeft(50)
+    while 1:
+        toTopLeft(50)
+        toTopRight(50)
+        toBottomRight(50)
+        toBottomLeft(50)
 
 def bt_stop():
     sys.exit(0)
@@ -37,7 +37,7 @@ def press(e):
         bt_stop()
 
 def toTopLeft(distance):
-    verify_img_alien('lordakia')
+    verify_img_lordakia()
     verify_img_bonus()
     if getPirateBau == "1":
         verify_img_pirate()
@@ -48,7 +48,7 @@ def toTopLeft(distance):
         toTopLeft(distance)
 
 def toBottomLeft(distance):
-    verify_img_alien('lordakia')
+    verify_img_lordakia()
     verify_img_bonus()
     if getPirateBau == "1":
         verify_img_pirate()
@@ -59,7 +59,7 @@ def toBottomLeft(distance):
         toBottomLeft(distance)
 
 def toTopRight(distance):
-    verify_img_alien('lordakia')
+    verify_img_lordakia()
     verify_img_bonus()
     if getPirateBau == "1":
         verify_img_pirate()
@@ -70,7 +70,7 @@ def toTopRight(distance):
         toTopRight(distance)
 
 def toBottomRight(distance):
-    verify_img_alien('lordakia')
+    verify_img_lordakia()
     verify_img_bonus()
     if getPirateBau == "1":
         verify_img_pirate()
@@ -104,15 +104,15 @@ def verify_img_pirate():
         return 0
     return 0
 
-def verify_img_alien(alien):
+def verify_img_lordakia():
     try:
-        k = pyautogui.locateOnScreen('imgs/'+alien+'.png', grayscale=True, confidence=.9)
+        k = pyautogui.locateOnScreen('imgs/lordakia.png', grayscale=True, confidence=.6)
         s = pyautogui.center(k)
         d = list(s)
         pyautogui.click(d[0], d[1])
         pyautogui.press('q')
-        time.sleep(1)
-        verify_img_alien()
+        time.sleep(0.5)
+        verify_img_lordakia()
     except:
         return 0
     return 0
